@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # -*- coding: utf-8 -*-
-#クエリの画像を1枚生成するだけ
-#検索くえり詳細
+#クエリの画像をGoogleから64枚取ってくる
+#検索クエリ詳細
 #	afgt.net/blog/archives/18202
 
 require 'cgi'
@@ -31,12 +31,13 @@ class ImageGetter
         end
         urls.flatten!
         urls.size.times do |i|
+          count = "%02d" % @count
           begin
             open(urls[i]) do |image_f|
               #File.open("#{$dpath}/image/#{word}_#{@count}.jpg","w") do |f|
-              File.open("#{$dpath}/image/baachan_#{@count}.jpg","w") do |f|
+              File.open("#{$dpath}/image/baachan_#{count}.jpg","w") do |f|
 
-                puts Rainbow("downloading ... #{word.chomp}_#{@count}.jpg").red.inverse.hide
+                puts Rainbow("downloading ... #{word.chomp}_#{count}.jpg").red.inverse.hide
                 data = image_f.read
                 f.write data
                 #puts "	done"
