@@ -4,6 +4,10 @@ require 'matrix'
 
 class ShufflePairMaker
   def initialize
+    if ARGV.size == 0
+      puts "Usage: ruby #{$0} member1.txt member2.txt member3.txt"
+      exit
+    end
     input_member = ARGV
     alphabet = ("A".."Z").to_a
     @group_h = {}
